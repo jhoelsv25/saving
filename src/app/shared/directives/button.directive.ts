@@ -7,12 +7,10 @@ export class ButtonDirective {
     public color = input<'primary' | 'secondary' | 'danger'>('primary');
     public variant = input<'solid' | 'outline' | 'ghost'>('solid');
     public size = input<'xs' | 'sm' | 'md' | 'lg'>('md');
-
+    public shape = input<'rounded' | 'square' | 'circle'>('rounded');
     private el = inject(ElementRef);
     private renderer = inject(Renderer2);
     ngOnInit(): void {
-        const el = this.el.nativeElement;
-
         this.addClasses([
             'font-medium',
             'rounded-xl',
@@ -22,6 +20,25 @@ export class ButtonDirective {
             'focus:ring-2',
             'focus:ring-offset-2',
         ]);
+        // 🟠 Shape styles
+        switch (this.shape()) {
+            case 'circle':
+                this.addClasses([
+                    'rounded-full',
+                    'p-2',
+                    'w-10',
+                    'h-10',
+                    'flex',
+                    'items-center',
+                    'justify-center',
+                ]);
+                break;
+            case 'square':
+                this.addClasses(['rounded-none']);
+                break;
+            default:
+                this.addClasses(['rounded-xl']);
+        }
 
         const colorMap = {
             primary: {
