@@ -1,83 +1,59 @@
-# 💰 Savings Circle
+# Saving
 
-> Aplicación Angular para gestionar grupos de ahorro colaborativo, también conocidos como "juntas" o "cadenas de ahorro".
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
----
+## Development server
 
-## 🚀 Funcionalidades
-
-- **Registro de participantes y sus aportes**: Lleva un control detallado de los miembros y sus contribuciones.
-- **Gestión de turnos o ciclos de cobro**: Organiza y administra los ciclos de pago de manera eficiente.
-- **Validación de código automática**: Configuración con Prettier, ESLint y Husky para mantener un código limpio y consistente.
-- **Preparado para producción**: Optimizado para colaboración en equipo y despliegue en entornos productivos.
-
----
-
-## 🧱 Instalación del proyecto
-
-### Requisitos previos
-
-Asegúrate de tener instalados los siguientes programas:
-
-- **Node.js** v20 o superior
-- **Angular CLI** v18 o superior
-- **Git**
-
-### Clonar e instalar dependencias
-
-Sigue estos pasos para configurar el proyecto en tu máquina local:
+To start a local development server, run:
 
 ```bash
-git clone https://github.com/jhoelsv25/savings-circle.git
-cd savings-circle
-npm install
+ng serve
 ```
 
-### Levantar el proyecto
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-Para iniciar el servidor de desarrollo, ejecuta:
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-npm run start
+ng generate component component-name
 ```
 
----
-
-## 🛠️ Husky (hook pre-commit)
-
-Este proyecto utiliza **Husky** para ejecutar automáticamente **lint** y **prettier** antes de cada commit, asegurando la calidad del código.
-
-### Activar Husky (una vez después de clonar)
-
-Ejecuta el siguiente comando para habilitar Husky:
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
 ```bash
-npm run prepare
+ng generate --help
 ```
 
----
+## Building
 
-## 📂 Estructura del proyecto (base)
+To build the project run:
 
-La estructura principal del proyecto es la siguiente:
-
-```
-src/
-├── app/
-│   ├── components/   # Componentes reutilizables de la aplicación
-│   ├── services/     # Servicios para lógica de negocio y API
-│   └── models/       # Modelos de datos
-├── assets/           # Recursos estáticos como imágenes y estilos
-└── environments/     # Configuraciones de entorno
+```bash
+ng build
 ```
 
----
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## 🧑‍💻 Autor
+## Running unit tests
 
-**Jhoel Silvestre**
+To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
 
-- **GitHub**: [jhoelsv25](https://github.com/jhoelsv25)
-- **Sitio web**: [jhoel.silvestre.web.app](https://jhoel.silvestre.web.app)
+```bash
+ng test
+```
 
----
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
