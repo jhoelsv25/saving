@@ -1,1 +1,121 @@
-<p>header works!</p>,
+<header class="bg-base-100 flex justify-between items-center p-4 shadow relative">
+    <div class="flex gap-3">
+        <button type="button" (click)="toggleSidebar.emit()" class="btn btn-circle border-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                <path fill="currentColor"
+                    d="M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32m64 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32m384 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32" />
+            </svg>
+        </button>
+
+    </div>
+
+    <div class="flex items-center md:space-x-5 space-x-3">
+        <!-- dark/light -->
+        <button title="Cambiar tema" class="text-lg text-grayPurple" (click)="toggleDarkMode()">
+            <i class="fa-regular" [ngClass]="isDarkMode() ? 'fa-sun' : 'fa-moon'"></i>
+            85
+        </button>
+        <button class="text-lg text-grayPurple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 2V5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M16 2V5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M3.5 9.09009H20.5" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                    d="M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z"
+                    stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M11.9955 13.7H12.0045" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M8.29431 13.7H8.30329" stroke="#787486" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M8.29431 16.7H8.30329" stroke="#787486" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </button>
+
+        <button class="text-lg text-grayPurple relative">
+            @if(true) {
+            <div class="absolute top-0 right-0 size-2.5 bg-success rounded-full animate-bounce"
+                style="transform: translate(50%, -50%)"></div>
+            }
+
+            <!-- Botón del ícono de notificaciones -->
+            <label for="notification" class="drawer-button text-grayPurple relative">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12.0196 2.90991C8.7096 2.90991 6.0196 5.59991 6.0196 8.90991V11.7999C6.0196 12.4099 5.7596 13.3399 5.4496 13.8599L4.2996 15.7699C3.5896 16.9499 4.0796 18.2599 5.3796 18.6999C9.6896 20.1399 14.3396 20.1399 18.6496 18.6999C19.8596 18.2999 20.3896 16.8699 19.7296 15.7699L18.5796 13.8599C18.2796 13.3399 18.0196 12.4099 18.0196 11.7999V8.90991C18.0196 5.60991 15.3196 2.90991 12.0196 2.90991Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" />
+                    <path
+                        d="M13.8699 3.19994C13.5599 3.10994 13.2399 3.03994 12.9099 2.99994C11.9499 2.87994 11.0299 2.94994 10.1699 3.19994C10.4599 2.45994 11.1799 1.93994 12.0199 1.93994C12.8599 1.93994 13.5799 2.45994 13.8699 3.19994Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path
+                        d="M15.0195 19.0601C15.0195 20.7101 13.6695 22.0601 12.0195 22.0601C11.1995 22.0601 10.4395 21.7201 9.89953 21.1801C9.35953 20.6401 9.01953 19.8801 9.01953 19.0601"
+                        stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" />
+                </svg> </label>
+        </button>
+
+        <!-- Notificaciones -->
+        <!--  <app-notification /> -->
+
+        <!-- Perfil de usuario -->
+        <div class="dropdown dropdown-end cursor-pointer">
+            <div tabindex="0" role="button" class="avatar flex items-center gap-3">
+                <!-- Nombre y rol del usuario (visible solo en pantallas grandes) -->
+                <span class="flex flex-col leading-tight max-md:hidden">
+                    <h3 class="text-sm font-bold">
+                        {{ currentUser()?.name || userName }}
+                    </h3>
+                    <small class="text-grayPurple">{{ currentUser()?.role }}</small>
+                </span>
+
+                <!-- Imagen del usuario -->
+                <picture class="size-11 rounded-full">
+                    <img class="rounded-full" [src]="
+              currentUser()?.avatar ||
+              'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'
+            " />
+                </picture>
+            </div>
+
+            <!-- Dropdown -->
+            <ul tabindex="0"
+                class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm text-gray-600 font-medium dark:text-gray-400">
+                <!-- Nombre y rol del usuario (visible solo en pantallas pequeñas) -->
+                <li class="md:hidden">
+                    <div class="flex flex-col leading-tight">
+                        <h3 class="text-sm font-bold">
+                            {{ currentUser()?.name || userName }}
+                        </h3>
+                        <small class="text-grayPurple">{{ currentUser()?.role }}</small>
+                    </div>
+                </li>
+                <hr class="my-2 text-gray-200 dark:text-gray-400 md:hidden" />
+
+                <!-- Opciones del menú -->
+                <li>
+                    <a routerLink="/profile">
+                        <i class="fa-solid fa-user"></i>
+                        Editar perfil
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <i class="fa-solid fa-cog"></i>
+                        Configuración
+                    </a>
+                </li>
+                <hr class="my-2 text-gray-200 dark:text-gray-400" />
+                <li>
+                    <button (click)="logout()">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Cerrar sesión
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

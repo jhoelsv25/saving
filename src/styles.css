@@ -5,11 +5,12 @@
         light --default,
         dark --prefersdark;
 }
-/*@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));*/
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
     --color-secondary: #ff961f;
     --color-primary: #005bac;
+    --color-grayPurple: oklch(56.87% 0.0278 295.69);
 }
 
 html {

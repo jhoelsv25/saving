@@ -1,0 +1,61 @@
+export const userColumns = [
+    {
+        key: 'name',
+        label: 'Nombre',
+        type: 'text',
+        sortable: true,
+        filterable: true,
+    },
+    {
+        key: 'email',
+        label: 'Correo Electrónico',
+        type: 'email',
+        sortable: true,
+        filterable: true,
+    },
+    {
+        key: 'role',
+        label: 'Rol',
+        type: 'select',
+        options: [
+            { value: 'admin', label: 'Administrador' },
+            { value: 'user', label: 'Usuario' },
+            { value: 'guest', label: 'Invitado' },
+        ],
+        sortable: true,
+        filterable: true,
+    },
+    {
+        key: 'status',
+        label: 'Estado',
+        type: 'select',
+        options: [
+            { value: 'active', label: 'Activo' },
+            { value: 'inactive', label: 'Inactivo' },
+            { value: 'suspended', label: 'Suspendido' },
+            { value: 'deleted', label: 'Eliminado' },
+        ],
+        sortable: true,
+        filterable: true,
+    },
+    {
+        key: 'createdAt',
+        label: 'Fecha de Creación',
+        type: 'date',
+        sortable: true,
+        filterable: true,
+        format: 'dd/MM/yyyy HH:mm:ss',
+    },
+    {
+        key: 'actions',
+        label: 'Acciones',
+        type: 'actions',
+        actions: [
+            { name: 'Editar', icon: 'pi pi-pencil', action: 'edit' },
+            { name: 'Eliminar', icon: 'pi pi-trash', action: 'delete' },
+            { name: 'Ver Detalles', icon: 'pi pi-eye', action: 'view' },
+        ],
+        sortable: false,
+        filterable: false,
+    },
+];
