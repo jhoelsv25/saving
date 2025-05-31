@@ -1,1 +1,44 @@
-<p>side-nav works!</p>,
+<div
+    class="p-3 md:p-4 bg-base-100 dark:bg-base-100 h-full shadow overflow-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <!-- Título del menú -->
+    <div class="p-4 text-xl font-bold text-black border-b border-gray-200 tracking-wide">
+        Menú Principal
+    </div>
+
+    <!-- Lista de items -->
+    <ul class="flex-1 overflow-y-auto space-y-1 text-gray-500 text-[15px] font-medium font-sans dark:text-gray-300">
+        @for (item of items(); track $index) {
+        <li>
+            <!-- Encabezado del grupo -->
+            <div class="flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer hover:bg-base-300 dark:hover:bg-base-200 transition-colors"
+                (click)="item.isCollapsed = !item.isCollapsed">
+                <span class="dark:text-gray-100 text-black">
+                    {{ item.title }}
+                </span>
+                @if (item.children.length > 0) {
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-gray-500 group-hover:text-gray-700 transition-transform duration-200"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        [attr.d]="item.isCollapsed ? 'M19 9l-7 7-7-7' : 'M9 5l7 7-7 7'" />
+                </svg>
+                }
+            </div>
+
+            <!-- Submenú -->
+            <ul [@openClose]="!item.isCollapsed"
+                class="ml-4 space-y-1 pl-3 border-l border-gray-300 dark:border-gray-500 transition-all">
+                @for (child of item.children; track $index) {
+                <li>
+                    <a [routerLink]="child.routerLink" routerLinkActive="bg-gray-200 text-black"
+                        class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-base-300 dark:hover:bg-base-200 transition text-gray-500">
+                        <i [class]=" child.icon + ' text-base'"></i>
+                        <span>{{ child.label }}</span>
+                    </a>
+                </li>
+                }
+            </ul>
+        </li>
+        }
+    </ul>
+</div>
