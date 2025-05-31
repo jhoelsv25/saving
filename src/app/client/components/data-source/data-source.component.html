@@ -1,12 +1,12 @@
 <form class="relative">
-    <table class="table w-full min-w-full rounded-md bg-white dark:bg-quaternary">
+    <table class="table w-full min-w-full rounded-md bg-base-100 dark:bg-base-200">
         <thead>
             <tr
                 class="border-b text-xs font-semibold uppercase leading-normal text-gray-500 dark:border-gray-600 dark:text-gray-300">
                 <th class="w-10">
                     <div class="relative">
                         <input type="checkbox" name="selectAll"
-                            class="input-checkbox peer disabled:pointer-events-none disabled:opacity-50"
+                            class="checkbox checkbox-primary disabled:pointer-events-none disabled:opacity-50"
                             [(ngModel)]="masterSelected" (change)="checkUncheckAll()" [disabled]="!multiple()" />
                         <div
                             class="text-red pointer-events-none absolute left-5 top-2.5 -translate-x-2/4 -translate-y-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
@@ -15,7 +15,7 @@
                     </div>
                 </th>
                 @for (column of columns(); track $index) {
-                <th class="table-fixed px-3 py-3 text-left">{{ column.name }}</th>
+                <th class="table-fixed px-3 py-3 text-left">{{ column.label }}</th>
                 } @if (showControls()) {
                 <th class="py-3">Acciones</th>
                 }
@@ -28,7 +28,7 @@
                 <td class="z-30 w-10 py-3 text-center">
                     <div class="relative">
                         <input type="checkbox" name="selectRow" [value]="row.selected" [checked]="row.selected"
-                            class="input-checkbox peer" (change)="itemSelected(row.id)"
+                            class="checkbox checkbox-primary" (change)="itemSelected(row.id)"
                             (click)="$event.stopPropagation()" />
                         <div
                             class="} pointer-events-none absolute left-5 top-2.5 -translate-x-2/4 -translate-y-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
@@ -105,28 +105,7 @@
                     </td>
                     } }
                 </ng-container>
-                @if(showControls()) {
-                <td class="flex justify-end relative p-3 pl-0">
-                    <div class="mt-2 controls" #controls (click)="$event.stopPropagation()">
-                        <button (click)="show(row.id)" class="text-base font-bold px-2">
-                            <i class="fas fa-ellipsis-v text-2xl text-primary"></i>
-                        </button>
-                        @if(row.showControls && showControls()) {
 
-                        <div
-                            class="absolute grid border dark:bg-quaternary dark:border-gray-500 border-gray-100 top-1 rounded-sm right-5 py-2 z-50 bg-white/95 space-y-1 shadow-lg">
-                            <button (click)="delete(row)"
-                                class="text-xs text-start space-x-1 text-gray-500 py-1 px-3 hover:bg-primary/20">
-                                <i class="fas fa-trash"></i>
-                                Eliminar
-                            </button>
-                            <ng-container *ngTemplateOutlet="actionTemplate()||null; context:{$implicit:row}">
-                            </ng-container>
-                        </div>
-                        }
-                    </div>
-                </td>
-                }
             </tr>
             }
         </tbody>

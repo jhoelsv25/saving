@@ -31,7 +31,7 @@ interface Column {
 }
 
 @Component({
-    selector: 'app-data-source',
+    selector: 'data-source',
     imports: [CommonModule, FormsModule, TimeFormatPipe],
     templateUrl: './data-source.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,7 +40,7 @@ export class DataSourceComponent {
     public actionTemplate = input<TemplateRef<any>>();
     public multiple = input<boolean>(true);
     public data = input.required({ transform: dataTransform });
-    public columns = input.required<Column[]>();
+    public columns = input.required<any[]>();
     public newAction = input<Btn>();
     public btnDetail = output<any>();
     public btnDelete = output<any>();
