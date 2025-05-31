@@ -1,0 +1,39 @@
+<div class="relative flex flex-col md:flex-row min-h-screen font-sans bg-white overflow-hidden">
+
+    <!-- Lado izquierdo: Imagen + Corazón (visible en todas las pantallas) -->
+    <div class="w-full md:w-1/2 bg-primary relative flex items-center justify-center p-8">
+        <!-- Corazón (opcional ocultar en móvil) -->
+        <div class="absolute top-4 left-4 w-16 h-16 md:w-28 md:h-28">
+            <svg viewBox="0 0 24 24" class="w-full h-full fill-[#E87722]">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+             2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81
+             4.5 2.09C13.09 3.81 14.76 3 16.5 3
+             19.58 3 22 5.42 22 8.5c0 3.78-3.4
+             6.86-8.55 11.54L12 21.35z" />
+            </svg>
+        </div>
+        <!-- Imagen persona -->
+        <img src="01.jpg" alt="Persona" class="w-40 md:w-80 z-10" />
+    </div>
+
+    <!-- Lado derecho en desktop (solo para fondo de contraste) -->
+    <div class="hidden md:block md:w-1/2 bg-gray-100"></div>
+
+    <!-- Formulario flotante -->
+    <div
+        class="absolute top-1/2 left-1/2 h-[90%] max-md:h-auto transform -translate-x-[10%] max-md:-translate-x-1/2 -translate-y-1/2 w-[90%] md:w-full md:max-w-2xl p-6 md:p-8 bg-white rounded-2xl shadow-2xl space-y-6 z-20 flex flex-col justify-between">
+        <!-- Logo como texto -->
+        <div class="text-center text-3xl font-bold text-[#005BAC]">
+            SAVING SC
+        </div>
+        <div class="max-w-md mx-auto">
+            <router-outlet />
+        </div>
+        <!-- Términos y condiciones -->
+        <div class="text-center text-xs text-gray-500 mt-4">
+            Al continuar, aceptas nuestros <a href="/terms" class="text-primary hover:underline">Términos y
+                Condiciones</a> y nuestra <a href="/privacy" class="text-primary hover:underline">Política de
+                Privacidad</a>.
+        </div>
+    </div>
+</div>
