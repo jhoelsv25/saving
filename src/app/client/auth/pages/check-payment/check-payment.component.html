@@ -1,0 +1,23 @@
+<section class="flex flex-col gap-3">
+
+    <h2 class="text-2xl font-bold text-secondary text-center">Verifica tu Aporte</h2>
+    <p class="text-center text-sm text-gray-600 max-w-md mx-auto">
+        Ingresa tu número de DNI para consultar si realizaste el aporte.
+        Este proceso es rápido y seguro, y te permitirá confirmar tu contribución en pocos segundos.
+    </p>
+    <p class="text-center text-xs text-gray-500">
+        Si tienes dudas sobre cómo proceder, por favor contáctanos a través de nuestro soporte en línea.
+    </p>
+
+    <!-- Formulario -->
+    <div class="space-y-4 max-w-md mx-auto mt-10">
+        <input type="text" maxlength="8" placeholder="Número de DNI"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg " />
+        <button class="w-full bg-secondary text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
+            Verificar Aporte
+        </button>
+        <div class="text-center mt-4">
+            <a routerLink="/login" class="text-primary hover:underline">Iniciar Sesión</a>
+        </div>
+    </div>
+</section>
