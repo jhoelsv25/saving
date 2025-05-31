@@ -1,0 +1,134 @@
+<form class="relative">
+    <table class="table w-full min-w-full rounded-md bg-white dark:bg-quaternary">
+        <thead>
+            <tr
+                class="border-b text-xs font-semibold uppercase leading-normal text-gray-500 dark:border-gray-600 dark:text-gray-300">
+                <th class="w-10">
+                    <div class="relative">
+                        <input type="checkbox" name="selectAll"
+                            class="input-checkbox peer disabled:pointer-events-none disabled:opacity-50"
+                            [(ngModel)]="masterSelected" (change)="checkUncheckAll()" [disabled]="!multiple()" />
+                        <div
+                            class="text-red pointer-events-none absolute left-5 top-2.5 -translate-x-2/4 -translate-y-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+                </th>
+                @for (column of columns(); track $index) {
+                <th class="table-fixed px-3 py-3 text-left">{{ column.name }}</th>
+                } @if (showControls()) {
+                <th class="py-3">Acciones</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (row of _dataTransform(); track i; let i = $index) {
+            <tr (click)="detail(row)"
+                class="relative cursor-pointer whitespace-nowrap text-gray-500 border-b border-dashed text-sm last:border-b-0 hover:bg-gray-400/20 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-600/20">
+                <td class="z-30 w-10 py-3 text-center">
+                    <div class="relative">
+                        <input type="checkbox" name="selectRow" [value]="row.selected" [checked]="row.selected"
+                            class="input-checkbox peer" (change)="itemSelected(row.id)"
+                            (click)="$event.stopPropagation()" />
+                        <div
+                            class="} pointer-events-none absolute left-5 top-2.5 -translate-x-2/4 -translate-y-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </div>
+                </td>
+                <ng-container>
+                    @for (column of columns(); track $index) { @if (column.value ===
+                    "createdAt" || column.value === "updatedAt" || column.value
+                    ==='dateIn' || column.value === 'dateOut' || column.value
+                    ==='paymentDate') {
+                    <td class="p-3 pl-0 text-left dark:text-gray-400">
+                        {{ row[column.value] | date: "short" }}
+                    </td>
+                    } @if (column.value === "state") {
+                    <td class="p-3 pl-0 text-left">
+                        <span class="rounded-full px-3 py-1 text-xs font-semibold text-white" [ngClass]="{
+                        'bg-green-500 ': row[column.value] === true,
+                        'bg-red-500 ': row[column.value] === false
+                      }">
+                            {{ row[column.value] ? "Activo" : "Inactivo" }}
+                        </span>
+                    </td>
+                    } @if (column.value === "startHour" || column.value === "endHour") {
+                    <td class="p-3 pl-0 text-left dark:text-gray-400">
+                        {{ row[column.value] | timeFormat }}
+                    </td>
+                    } @if(column.value === "statusPayment") {
+                    <td class="p-3 pl-0 text-left">
+                        <span class="rounded-full px-3 py-1 text-xs font-semibold" [ngClass]="{
+                'text-green-500 ': row[column.value] === 'Pagado',
+                'text-yellow-500 ': row[column.value] === 'Pendiente',
+                'text-red-500 ': row[column.value] === 'Sin pagar',
+                'text-orange-500 ': row[column.value] === 'Pago parcial'
+                      }">
+                            {{ row[column.value] }}
+                        </span>
+                    </td>
+                    } @if (column.value === "status") {
+                    <td class="p-3 pl-0 text-left">
+                        <span class="rounded-full px-3 py-1 text-xs font-semibold text-white" [ngClass]="{
+                       'bg-green-500': row[column.value] === 'En Progreso' || row[column.value] === 'Confirmado' || row[column.value] === 'Disponible' || row[column.value] === 'Pagado',
+                'bg-yellow-500': row[column.value] === 'Finalizado' || row[column.value] === 'Pendiente' || row[column.value] === 'Mantenimiento',
+                'bg-red-500': row[column.value] === 'Borrador' || row[column.value] === 'Sin pagar' || row[column.value] === 'Rechazado',
+                'bg-orange-500': row[column.value] === 'Cancelado' || row[column.value] === 'Ocupado'|| row[column.value] === 'En uso' || row[column.value] === 'No disponible'|| row[column.value] === 'Pago parcial'
+                      }">
+                            {{ row[column.value] }}
+                        </span>
+                    </td>
+                    } @if (column.value === "amount" || column.value==='price' ||
+                    column.value === "cost" || column.value==='total' ) {
+                    <td class="p-3 pl-0 text-left dark:text-gray-400">
+                        {{ row[column.value] | currency: 'PEN' }}
+                    </td>
+                    } @if ( column.value === "startDate" || column.value === "endDate" ||
+                    column.value === "dateLimit" || column.value === "fromDate" ||
+                    column.value=== "toDate" || column.value === "hireDate") {
+                    <td class="p-3 pl-0 text-left dark:text-gray-400">
+                        {{ row[column.value] | date: "mediumDate" }}
+                    </td>
+                    } @if ( column.value !== "createdAt" && column.value !== "updatedAt"
+                    && column.value !== "startDate" && column.value !== "endDate" &&
+                    column.value !== "dateLimit" && column.value !== "state" &&
+                    column.value !== "amount" && column.value !== "status" && column.value
+                    !== "startHour" && column.value !== "endHour" && column.value
+                    !=="fromDate" && column.value !== "toDate" && column.value !==
+                    "hireDate" && column.value !== "price" && column.value !== "cost" &&
+                    column.value !== "total" && column.value !== "dateIn" && column.value
+                    !=="dateOut" && column.value !== "paymentDate" && column.value
+                    !=="statusPayment") {
+                    <td class="max-w-xs p-3 text-left dark:text-gray-400">
+                        <p class="text-wrap">{{ row[column.value] }}</p>
+                    </td>
+                    } }
+                </ng-container>
+                @if(showControls()) {
+                <td class="flex justify-end relative p-3 pl-0">
+                    <div class="mt-2 controls" #controls (click)="$event.stopPropagation()">
+                        <button (click)="show(row.id)" class="text-base font-bold px-2">
+                            <i class="fas fa-ellipsis-v text-2xl text-primary"></i>
+                        </button>
+                        @if(row.showControls && showControls()) {
+
+                        <div
+                            class="absolute grid border dark:bg-quaternary dark:border-gray-500 border-gray-100 top-1 rounded-sm right-5 py-2 z-50 bg-white/95 space-y-1 shadow-lg">
+                            <button (click)="delete(row)"
+                                class="text-xs text-start space-x-1 text-gray-500 py-1 px-3 hover:bg-primary/20">
+                                <i class="fas fa-trash"></i>
+                                Eliminar
+                            </button>
+                            <ng-container *ngTemplateOutlet="actionTemplate()||null; context:{$implicit:row}">
+                            </ng-container>
+                        </div>
+                        }
+                    </div>
+                </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+</form>
