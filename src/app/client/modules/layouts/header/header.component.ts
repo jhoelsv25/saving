@@ -1,9 +1,8 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { ThemeService } from '@core/services/theme.service';
 @Component({
     selector: 'app-header',
-    imports: [NgClass],
+    imports: [],
     templateUrl: './header.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
