@@ -7,5 +7,16 @@
     },
     "editor.quickSuggestions": {
         "strings": "on"
-    }
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "none",
+    "prettier.tabWidth": 2,
+    "prettier.useTabs": false,
+    "prettier.printWidth": 80,
+    "prettier.endOfLine": "lf"
 }

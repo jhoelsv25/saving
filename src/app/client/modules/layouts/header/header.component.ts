@@ -27,7 +27,7 @@ export class HeaderComponent {
     }
 
     toggleDarkMode() {
-        // this.themeService.toggleTheme();
+        this.themeService.toggleTheme();
     }
 
     logout() {

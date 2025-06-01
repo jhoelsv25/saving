@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between bg-white dark:bg-gray-800 p-4 shadow rounded-lg">
+<div class="flex items-center justify-between rounded-lg bg-white p-4 shadow dark:bg-gray-800">
     <!-- Sección izquierda: Título y descripción -->
     <div class="flex flex-col">
         <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
@@ -10,31 +10,61 @@
     </div>
 
     <!-- Sección derecha: Filtros, búsqueda y botones -->
-    <div class="flex items-center gap-4">
-        <!-- Filtros -->
-        <div class="relative">
-            <select
-                class="px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 dark:text-gray-300 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500"
-                (change)="onFilterChange($event)">
-                <option value="">Todos</option>
-                @for (filter of filterOptions(); track $index) {
-                <option [value]="filter.value">
-                    {{ filter.label }}
-                </option>
-                }
-            </select>
+    <section class="flex flex-col justify-end gap-3">
+        <div class="flex items-center justify-end gap-3">
+            <button class="btn btn-primary btn-sm rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M13 6.5V11h4.5v2H13v4.5h-2V13H6.5v-2H11V6.5z" />
+                </svg>
+                <span class="ml-2">Nuevo</span>
+            </button>
         </div>
+        <div class="flex items-center gap-4">
+            <!-- Filtros -->
+            <div class="relative">
+                <input
+                    type="text"
+                    placeholder="Buscar..."
+                    class="input input-bordered input-sm w-full max-w-xs"
+                    (input)="onSearch($event)"
+                />
+            </div>
+            <div class="dropdown dropdown-end">
+                <label tabindex="0" class="btn btn-outline btn-sm">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 4h16v2.172a2 2 0 0 1-.586 1.414L15 12v7l-6 2v-8.5L4.52 7.572A2 2 0 0 1 4 6.227z"
+                        />
+                    </svg>
+                </label>
+                <ul
+                    tabindex="0"
+                    class="dropdown-content menu bg-base-100 rounded-box w-52 p-2 shadow"
+                >
+                    <li>
+                        <a (click)="onFilterChange($event)">Todos</a>
+                    </li>
+                    @for (filter of filterOptions(); track $index) {
+                        <li>
+                            <a (click)="onFilterChange(filter.value)">
+                                {{ filter.label }}
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
 
-        <!-- Búsqueda -->
-        <div class="relative">
-            <input type="text" placeholder="Buscar..."
-                class="px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-600 dark:text-gray-300 dark:bg-gray-700 focus:ring-2 focus:ring-blue-500"
-                (input)="onSearch($event)" />
+            <!-- Búsqueda -->
         </div>
-
-        <!-- Botón de crear -->
-        <button class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition" (click)="onCreate()">
-            Crear
-        </button>
-    </div>
+    </section>
 </div>
