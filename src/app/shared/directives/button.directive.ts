@@ -13,7 +13,7 @@ export class ButtonDirective {
     ngOnInit(): void {
         this.addClasses([
             'font-medium',
-            'rounded-xl',
+            'rounded-lg',
             'transition-colors',
             'duration-200',
             'focus:outline-none',
@@ -37,7 +37,7 @@ export class ButtonDirective {
                 this.addClasses(['rounded-none']);
                 break;
             default:
-                this.addClasses(['rounded-xl']);
+                this.addClasses(['rounded-lg']);
         }
 
         const colorMap = {
@@ -82,8 +82,8 @@ export class ButtonDirective {
         const sizeMap = {
             xs: ['text-xs', 'px-2', 'py-1'],
             sm: ['text-sm', 'px-3', 'py-1.5'],
-            md: ['text-base', 'px-4', 'py-2'],
-            lg: ['text-lg', 'px-5', 'py-3'],
+            md: ['text-sm', 'px-3', 'py-2'],
+            lg: ['text-base', 'px-5', 'py-3'],
         };
 
         this.addClasses(sizeMap[this.size()]);

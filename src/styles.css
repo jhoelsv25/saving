@@ -32,3 +32,16 @@ html {
     --color-secondary: #ff961f;
     --color-primary: #005bac;
 }
+
+.input,
+select,
+textarea {
+    @apply bg-base-200 rounded-xl border-none placeholder:text-gray-500 focus-within:outline-0;
+}
+.label-form {
+    @apply text-sm font-medium text-gray-500;
+}
+.error-message {
+    @apply text-red-500;
+    @apply text-xs;
+}

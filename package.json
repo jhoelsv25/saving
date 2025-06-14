@@ -21,6 +21,7 @@
         "@angular/router": "^19.1.0",
         "@ngrx/operators": "^19.2.0",
         "@ngrx/signals": "^19.2.0",
+        "@supabase/supabase-js": "^2.50.0",
         "@tailwindcss/postcss": "^4.1.7",
         "daisyui": "^5.0.35",
         "postcss": "^8.5.3",
