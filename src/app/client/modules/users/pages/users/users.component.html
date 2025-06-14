@@ -2,7 +2,18 @@
     <header-detail
         [title]="'Usuarios'"
         [description]="'Lista de usuarios registrados en el sistema.'"
+        (create)="onOpenModal()"
     />
 
-    <data-source [data]="[]" [columns]="columns()" />
+    <data-source [data]="data()" [columns]="columns()" />
 </section>
+
+<!-- Open the modal using ID.showModal() method -->
+<dialog class="modal modal-top" [class.modal-open]="showModal()">
+    <div class="modal-box mx-auto mt-5 max-w-2xl rounded-lg">
+        <app-user-form (onCloseModal)="onCloseModal()" />
+    </div>
+    <form method="dialog" class="modal-backdrop">
+        <button (click)="onCloseModal()">close</button>
+    </form>
+</dialog>
