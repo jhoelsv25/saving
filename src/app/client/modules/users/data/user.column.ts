@@ -17,12 +17,6 @@ export const userColumns = [
         key: 'role',
         label: 'Rol',
         type: 'select',
-        options: [
-            { value: 'admin', label: 'Administrador' },
-            { value: 'user', label: 'Usuario' },
-            { value: 'guest', label: 'Invitado' },
-        ],
-        sortable: true,
         filterable: true,
     },
     {
