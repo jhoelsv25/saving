@@ -21,22 +21,52 @@ export interface Toast {
 @Injectable({ providedIn: 'root' })
 export class ToastService {
     toasts = signal<Toast[]>([]);
+    private addToast(toast: Toast) {
+        this.toasts.update(currentToasts => [...currentToasts, toast]);
+        setTimeout(() => {
+            this.removeToast(toast.id);
+        }, 5000); // Remove toast after 5 seconds
+    }
 
-    showToast(
-        message: string,
-        type: ToastType = 'info',
-        duration: number = 5000,
-        position: ToastPosition = 'bottom-right', // Ahora la posición por defecto es 'bottom-right'
-    ): number {
-        const id = Date.now(); // ID único basado en timestamp
-        this.toasts.set([...this.toasts(), { message, type, id, position }]);
-
-        // Solo configurar timeout si duration > 0
-        if (duration > 0) {
-            setTimeout(() => this.removeToast(id), duration);
-        }
-
-        return id; // Retornar el ID para control manual
+    success(message: string, position: ToastPosition = 'top-right') {
+        this.addToast({
+            message,
+            type: 'success',
+            id: Date.now(),
+            position,
+        });
+    }
+    error(message: string, position: ToastPosition = 'top-right') {
+        this.addToast({
+            message,
+            type: 'error',
+            id: Date.now(),
+            position,
+        });
+    }
+    info(message: string, position: ToastPosition = 'top-right') {
+        this.addToast({
+            message,
+            type: 'info',
+            id: Date.now(),
+            position,
+        });
+    }
+    warning(message: string, position: ToastPosition = 'top-right') {
+        this.addToast({
+            message,
+            type: 'warning',
+            id: Date.now(),
+            position,
+        });
+    }
+    notification(message: string, position: ToastPosition = 'top-right') {
+        this.addToast({
+            message,
+            type: 'notification',
+            id: Date.now(),
+            position,
+        });
     }
 
     removeToast(id: number) {
