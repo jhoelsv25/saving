@@ -168,9 +168,9 @@
                 <!-- Nombre y rol del usuario (visible solo en pantallas grandes) -->
                 <span class="flex flex-col leading-tight max-md:hidden">
                     <h3 class="text-sm font-bold">
-                        {{ currentUser()?.name || userName }}
+                        {{ currentUser().name || userName }}
                     </h3>
-                    <small class="text-grayPurple">{{ currentUser()?.role }}</small>
+                    <small class="text-grayPurple">{{ currentUser().role }}</small>
                 </span>
 
                 <!-- Imagen del usuario -->
@@ -193,9 +193,9 @@
                 <li class="md:hidden">
                     <div class="flex flex-col leading-tight">
                         <h3 class="text-sm font-bold">
-                            {{ currentUser()?.name || userName }}
+                            {{ currentUser().name || userName }}
                         </h3>
-                        <small class="text-grayPurple">{{ currentUser()?.role }}</small>
+                        <small class="text-grayPurple">{{ currentUser().role }}</small>
                     </div>
                 </li>
                 <hr class="my-2 text-gray-200 md:hidden dark:text-gray-400" />
