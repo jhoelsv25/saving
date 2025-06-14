@@ -1,0 +1,75 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <!-- Nombre -->
+    <div class="col-span-2">
+        <label for="name" class="label-form">Nombre</label>
+        <input
+            id="name"
+            type="text"
+            formControlName="name"
+            appInputText
+            placeholder="Ingresa el nombre"
+        />
+        @if (userForm.get('name')?.invalid && userForm.get('name')?.touched) {
+            <div class="error-message">
+                El nombre es obligatorio y debe tener al menos 3 caracteres.
+            </div>
+        }
+    </div>
+
+    <!-- Email -->
+    <div class="col-span-2">
+        <label for="email" class="label-form">Correo Electrónico</label>
+        <input
+            id="email"
+            type="email"
+            formControlName="email"
+            appInputText
+            placeholder="Ingresa el correo electrónico"
+        />
+        @if (userForm.get('email')?.invalid && userForm.get('email')?.touched) {
+            <div class="error-message">Ingresa un correo electrónico válido.</div>
+        }
+    </div>
+
+    <!-- Documento -->
+    <div>
+        <label for="document" class="label-form">Documento</label>
+        <input
+            id="document"
+            type="text"
+            formControlName="document"
+            appInputText
+            placeholder="Ingresa el documento"
+        />
+        @if (userForm.get('document')?.invalid && userForm.get('document')?.touched) {
+            <div class="error-message">
+                El documento es obligatorio y debe tener al menos 8 caracteres.
+            </div>
+        }
+    </div>
+
+    <!-- Rol -->
+    <div>
+        <label for="role" class="label-form">Rol</label>
+        <select id="role" formControlName="role" class="select select-bordered w-full">
+            @for (role of roles(); track $index) {
+                <option [value]="role.value">{{ role.label }}</option>
+            }
+        </select>
+        @if (userForm.get('role')?.invalid && userForm.get('role')?.touched) {
+            <div class="error-message">Selecciona un rol válido.</div>
+        }
+    </div>
+
+    <!-- Botón de envío -->
+    <footer class="col-span-2 mt-4">
+        <div class="flex justify-end gap-3">
+            <button type="button" appButton variant="outline" size="md" (click)="onCancel()">
+                Cancelar
+            </button>
+            <button type="submit" appButton color="primary" size="md" [disabled]="userForm.invalid">
+                Agregar
+            </button>
+        </div>
+    </footer>
+</form>
